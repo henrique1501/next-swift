@@ -72,9 +72,9 @@ export function Editor({ content }: EditorProps) {
     editor?.chain().toggleStrike().run()
   }
 
-  function handleToggleAnchor() {
-    editor?.commands.toggleLink({
-      href: 'https://google.com',
+  function handleSetLink(url: string) {
+    editor?.commands.setLink({
+      href: url,
       target: '_blank',
     })
   }
@@ -205,7 +205,7 @@ export function Editor({ content }: EditorProps) {
         onAlignTextLeft={handleAlignTextLeft}
         onAlignTextCenter={handleAlignTextCenter}
         onAlignTextRight={handleAlignTextRight}
-        onToggleAnchor={handleToggleAnchor}
+        onSetLink={handleSetLink}
       />
       <EditorContent editor={editor} />
     </div>

@@ -4,7 +4,6 @@ import {
   AlignRight,
   Bold,
   Italic,
-  Link,
   List,
   ListOrdered,
   Strikethrough,
@@ -13,6 +12,7 @@ import {
 import { Separator } from './Separator'
 import { TextTypeSelector } from './TextTypeSelector'
 import { ToggleItem } from './ToggleItem'
+import { LinkButton } from './LinkButton'
 
 interface StateData {
   onToggle: () => void
@@ -39,7 +39,7 @@ interface EditorHeaderProps {
   onAlignTextLeft: () => void
   onAlignTextCenter: () => void
   onAlignTextRight: () => void
-  onToggleAnchor: () => void
+  onSetLink: (url: string) => void
 }
 
 export function EditorHeader({
@@ -53,7 +53,7 @@ export function EditorHeader({
   onAlignTextLeft,
   onAlignTextCenter,
   onAlignTextRight,
-  onToggleAnchor,
+  onSetLink,
 }: EditorHeaderProps) {
   return (
     <div className="flex w-full items-center rounded-tl-lg rounded-tr-lg border-2 border-b-0 border-gray-200 p-2">
@@ -94,14 +94,7 @@ export function EditorHeader({
           <Strikethrough className="h-4 w-4" />
         </ToggleItem>
 
-        <button
-          value="a"
-          type="button"
-          onClick={onToggleAnchor}
-          className="rounded-md p-2 leading-none text-gray-300 hover:bg-gray-200"
-        >
-          <Link className="h-4 w-4" />
-        </button>
+        <LinkButton onSetLink={onSetLink} />
 
         <Separator />
 
