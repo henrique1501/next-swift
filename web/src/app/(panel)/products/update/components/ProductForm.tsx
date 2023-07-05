@@ -23,13 +23,21 @@ export function ProductForm() {
         label="Título"
         placeholder="Camiseta branca, Sapato preto, etc..."
         name="title"
+        value="Camisa de botão branca aberta no meio"
       />
 
       <div>
         <label className="mb-1 text-sm font-medium text-zinc-900">
           Descrição
         </label>
-        <Editor />
+
+        <Editor
+          content={`
+            <h1>Camisa de botão branca aberta no meio</h1>
+
+            <p>Lorem ipsum, silor dolor amet...</p>
+        `}
+        />
       </div>
 
       <div className="grid grid-cols-3 gap-5">
@@ -38,6 +46,7 @@ export function ProductForm() {
           label="Largura (cm)"
           placeholder="180"
           name="width"
+          value="96"
         />
 
         <Input
@@ -45,15 +54,23 @@ export function ProductForm() {
           label="Altura (cm)"
           placeholder="362"
           name="height"
+          value="120"
         />
 
-        <Input type="number" label="Peso (g)" placeholder="55" name="weight" />
+        <Input
+          type="number"
+          label="Peso (g)"
+          placeholder="55"
+          name="weight"
+          value="23"
+        />
 
         <Input
           type="number"
           label="Preço (R$)"
           placeholder="72,90"
           name="price"
+          value="130.99"
         />
 
         <Input
@@ -61,6 +78,7 @@ export function ProductForm() {
           label="Quantidade"
           placeholder="55"
           name="quantity"
+          value="98"
         />
       </div>
 
@@ -71,7 +89,9 @@ export function ProductForm() {
         <Dropzone />
       </div>
 
-      <TagInput />
+      <TagInput
+        value={['camisetas', 'camisas manga longa', 'camisa masculino']}
+      />
 
       <Button type="submit" className="ml-auto w-[120px]">
         Adicionar

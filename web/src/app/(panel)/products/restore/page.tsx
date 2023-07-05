@@ -2,8 +2,8 @@ import { RotateCcw } from 'lucide-react'
 import Image from 'next/image'
 import { Checkbox } from '../../components/Checkbox'
 import { QuantitySelect } from '../../components/QuantitySelect'
-import { Td } from './components/Td'
-import { Th } from './components/Th'
+import { Td } from '../../components/table/Td'
+import { Th } from '../../components/table/Th'
 
 export default function Restore() {
   return (

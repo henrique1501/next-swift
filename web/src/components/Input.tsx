@@ -17,11 +17,12 @@ interface InputProps extends Form.FormFieldProps {
   label: string
   type?: HTMLInputTypeAttribute
   errors?: ErrorMsg[]
+  value?: string
   prefixIcon?: ReactElement<ReactSVG>
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, type, errors, placeholder, prefixIcon, ...rest }, ref) => {
+  ({ label, type, errors, value, placeholder, prefixIcon, ...rest }, ref) => {
     return (
       <Form.Field {...rest} ref={ref}>
         <Form.Label className="text-sm font-medium text-zinc-900">
@@ -38,6 +39,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
                 required
                 placeholder={placeholder}
                 type={type}
+                value={value}
                 className={`h-full flex-1 rounded-md ${
                   prefixIcon ? 'pl-11 pr-3' : 'px-3'
                 } outline-none placeholder:text-sm`}

@@ -1,8 +1,12 @@
 import { XCircle } from 'lucide-react'
 import { MouseEvent, useState } from 'react'
 
-export function TagInput() {
-  const [tags, setTags] = useState<string[]>([])
+interface TagInputProps {
+  value?: string[]
+}
+
+export function TagInput({ value = [] }: TagInputProps) {
+  const [tags, setTags] = useState<string[]>(value)
   const [tagContent, setTagContent] = useState('')
 
   function handleAddTag(
@@ -46,6 +50,7 @@ export function TagInput() {
             placeholder="Adicione uma categoria"
             className="focus:outline-none"
           />
+
           <button
             type="button"
             onClick={handleAddTag}
