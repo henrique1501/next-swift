@@ -6,6 +6,7 @@ import { Td } from '../../components/table/Td'
 import { Th } from '../../components/table/Th'
 import { Datepicker } from '../../products/components/Datepicker'
 import Image from 'next/image'
+import { Tooltip } from '../../components/Tooltip'
 
 export function SalesContent() {
   const [startDate, setStartDate] = useState<Date | null>(null)
@@ -43,25 +44,29 @@ export function SalesContent() {
             <Th>Produto</Th>
             <Th>Cliente</Th>
             <th className="flex items-center gap-2">
-              <button className="flex h-8 w-8 items-center justify-center rounded-full bg-purple-700">
-                <Image
-                  src="/excel-icon.svg"
-                  alt=""
-                  width={24}
-                  height={24}
-                  className="object-cover"
-                />
-              </button>
+              <Tooltip content="Fazer download em excel" side="bottom">
+                <button className="flex h-8 w-8 items-center justify-center rounded-full bg-purple-700 hover:brightness-90">
+                  <Image
+                    src="/excel-icon.svg"
+                    alt=""
+                    width={24}
+                    height={24}
+                    className="object-cover"
+                  />
+                </button>
+              </Tooltip>
 
-              <button className="flex h-8 w-8 items-center justify-center rounded-full bg-purple-700">
-                <Image
-                  src="/pdf-icon.svg"
-                  alt=""
-                  width={20}
-                  height={20}
-                  className="object-cover"
-                />
-              </button>
+              <Tooltip content="Fazer download em pdf" side="bottom">
+                <button className="flex h-8 w-8 items-center justify-center rounded-full bg-purple-700 hover:brightness-90">
+                  <Image
+                    src="/pdf-icon.svg"
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="object-cover"
+                  />
+                </button>
+              </Tooltip>
             </th>
           </tr>
         </thead>

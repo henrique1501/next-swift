@@ -15,7 +15,7 @@ import { usePathname } from 'next/navigation'
 import { LoggoutButton } from './LoggoutButton'
 import { NavLink } from './NavLink'
 import { Popover } from './Popover'
-import { Tooltip } from './Tooltip'
+import { Tooltip } from '../Tooltip'
 import {
   customersLinks,
   employeesLinks,
