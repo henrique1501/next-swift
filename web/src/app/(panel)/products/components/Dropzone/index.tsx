@@ -8,7 +8,12 @@ type PreviewImage = {
   url: string
 }
 
-export function Dropzone() {
+interface DropzoneProps {
+  label: string
+  multiple?: boolean
+}
+
+export function Dropzone({ label, multiple = false }: DropzoneProps) {
   const [previewImages, setPreviewImages] = useState<PreviewImage[]>([])
 
   const onDrop = useCallback((files: File[]) => {
@@ -42,7 +47,7 @@ export function Dropzone() {
           isDragAccept ? 'border-purple-700 bg-purple-700/5' : 'border-gray-200'
         } ${isDragReject ? 'border-red-500 bg-red-500/5' : 'border-gray-200'}`}
       >
-        <input {...getInputProps()} multiple />
+        <input {...getInputProps()} multiple={multiple} />
 
         <div className="flex h-full items-center justify-center">
           <Image
@@ -78,7 +83,7 @@ export function Dropzone() {
           {!isDragAccept && !isDragReject && (
             <div className="flex flex-col items-center justify-center gap-2">
               <h3 className="text-sm font-medium text-zinc-900">
-                Arraste e solte suas imagens aqui, ou{' '}
+                {label}, ou{' '}
                 <span className="font-semibold text-purple-700">Procure</span>
               </h3>
 
