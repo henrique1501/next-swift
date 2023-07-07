@@ -4,13 +4,18 @@ import { ReactNode } from 'react'
 
 interface SelectProps {
   placeholder?: string
+  size?: 'sm' | 'lg'
   children: ReactNode
 }
 
-export function Select({ placeholder, children }: SelectProps) {
+export function Select({ placeholder, size = 'lg', children }: SelectProps) {
   return (
     <PrimitveSelect.Root>
-      <PrimitveSelect.Trigger className="flex w-full items-center justify-between rounded-md border border-gray-200 p-2 text-sm font-medium text-gray-900 focus:outline-none">
+      <PrimitveSelect.Trigger
+        className={`${
+          size === 'sm' ? 'w-[258px]' : 'w-full'
+        } flex items-center justify-between rounded-md border border-gray-200 p-2 text-sm font-medium text-gray-900 focus:outline-none`}
+      >
         <PrimitveSelect.Value placeholder={placeholder} />
         <PrimitveSelect.Icon>
           <ChevronDown className="h-5 w-5 stroke-purple-700" />
@@ -20,7 +25,9 @@ export function Select({ placeholder, children }: SelectProps) {
       <PrimitveSelect.Portal>
         <PrimitveSelect.Content
           position="popper"
-          className="mt-2 w-[768px] overflow-hidden rounded-md border-l border-r border-t border-gray-200 bg-white focus:outline-none"
+          className={`mt-2 ${
+            size === 'sm' ? 'w-[258px]' : 'w-[768px]'
+          } overflow-hidden rounded-md border-l border-r border-t border-gray-200 bg-white focus:outline-none`}
         >
           <PrimitveSelect.Viewport>
             <PrimitveSelect.Group>{children}</PrimitveSelect.Group>

@@ -2,6 +2,7 @@
 
 import { Edit3 } from 'lucide-react'
 import { DeleteButton } from './DeleteButton'
+import Link from 'next/link'
 
 export function Info() {
   return (
@@ -11,9 +12,9 @@ export function Info() {
       </h2>
 
       <div className="flex items-center gap-2">
-        <button>
+        <Link href={`/products/update/126126`}>
           <Edit3 className="h-5 w-5 stroke-purple-700" />
-        </button>
+        </Link>
 
         <DeleteButton />
       </div>

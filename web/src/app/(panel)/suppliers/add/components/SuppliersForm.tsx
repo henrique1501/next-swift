@@ -1,17 +1,16 @@
 'use client'
 
-import { Select } from '@/app/(panel)/components/Select'
-import { SelectItem } from '@/app/(panel)/components/Select/SelectItem'
-import { Dropzone } from '@/app/(panel)/products/components/Dropzone'
 import { Button } from '@/components/Button'
 import { Input } from '@/components/Input'
 import * as Form from '@radix-ui/react-form'
 
-export function EmployeesForm() {
+export function SuppliersForm() {
   return (
     <Form.Root className="mt-10 flex w-full flex-col gap-16">
       <div>
-        <h2 className="text-xl font-medium text-zinc-900">Dados pessoais</h2>
+        <h2 className="text-xl font-medium text-zinc-900">
+          Dados do fornecedor
+        </h2>
 
         <div className="mt-6 flex flex-col gap-4">
           <Input name="name" label="Nome" placeholder="Jhon doe" />
@@ -19,29 +18,35 @@ export function EmployeesForm() {
           <Input name="email" label="Email" placeholder="jhondoe@gmail.com" />
 
           <div className="flex items-center gap-6">
+            <Input name="cnpj" label="CNPJ" placeholder="000.000.00-00" />
             <Input name="ddd" label="DDD" placeholder="00" type="number" />
-
             <Input
               name="phone"
               label="Celular/Telefone"
-              placeholder="0 00000000"
+              placeholder="000000000"
               type="number"
             />
-
-            <div>
-              <label>Cargo</label>
-
-              <Select placeholder="Selecione um cargo" size="sm">
-                <SelectItem value="admin">Administrador</SelectItem>
-                <SelectItem value="sub-admin">Sub Administrador</SelectItem>
-              </Select>
-            </div>
           </div>
+        </div>
+      </div>
 
-          <div>
-            <label>Foto de perfil</label>
+      <div>
+        <h2 className="text-xl font-medium text-zinc-900">
+          Endereço do fornecedor
+        </h2>
 
-            <Dropzone label="Arraste e solte uma imagem aqui" />
+        <div className="mt-6 flex flex-col gap-4">
+          <Input name="street" label="Rua" placeholder="brasil" />
+
+          <div className="flex items-center gap-6">
+            <Input
+              name="number"
+              label="Número"
+              placeholder="00"
+              type="number"
+            />
+            <Input name="cep" label="CEP" placeholder="00000-00" />
+            <Input name="uf" label="UF" placeholder="SP" />
           </div>
         </div>
       </div>

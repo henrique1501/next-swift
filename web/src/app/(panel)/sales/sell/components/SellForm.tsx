@@ -1,12 +1,12 @@
 'use client'
 
 import * as Form from '@radix-ui/react-form'
-import { Select } from './Select'
 import { Input } from '@/components/Input'
 import { Button } from '@/components/Button'
 import { ProductsBar } from './ProductsBar'
 import { Search } from 'lucide-react'
-import { SelectItem } from './SelectItem'
+import { Select } from '../../../components/Select'
+import { SelectItem } from '../../../components/Select/SelectItem'
 
 export function SellForm() {
   return (
