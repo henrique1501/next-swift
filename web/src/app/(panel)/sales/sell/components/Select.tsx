@@ -10,7 +10,7 @@ interface SelectProps {
 export function Select({ placeholder, children }: SelectProps) {
   return (
     <PrimitveSelect.Root>
-      <PrimitveSelect.Trigger className="flex w-full items-center justify-between rounded-md border border-gray-200 p-2 text-sm font-medium text-gray-300 focus:outline-none">
+      <PrimitveSelect.Trigger className="flex w-full items-center justify-between rounded-md border border-gray-200 p-2 text-sm font-medium text-gray-900 focus:outline-none">
         <PrimitveSelect.Value placeholder={placeholder} />
         <PrimitveSelect.Icon>
           <ChevronDown className="h-5 w-5 stroke-purple-700" />

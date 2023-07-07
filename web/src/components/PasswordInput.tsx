@@ -28,7 +28,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
         </Form.Label>
 
         <div className="flex flex-col gap-2">
-          <div className="relative flex h-10 w-full items-center gap-2 rounded-md border-2 border-gray-200 outline-none transition-colors focus-within:border-purple-700">
+          <div className="relative flex h-10 w-full items-center gap-2 overflow-hidden rounded-md border-2 border-gray-200 outline-none transition-colors focus-within:border-purple-700">
             <div className="flex h-full w-full items-center gap-2">
               <div className="absolute left-3">{prefixIcon}</div>
               <Form.Control

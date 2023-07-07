@@ -31,7 +31,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
         <div className="flex flex-col gap-2">
           <div
-            className={`flex h-10 items-center rounded-md border-2 border-gray-200 outline-none transition-colors focus-within:border-purple-700`}
+            className={`flex h-10 items-center overflow-hidden rounded-md border-2 border-gray-200 outline-none transition-colors focus-within:border-purple-700`}
           >
             <div className="relative flex h-full w-full items-center gap-2">
               <div className="absolute left-3">{prefixIcon}</div>
@@ -40,7 +40,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
                 placeholder={placeholder}
                 type={type}
                 value={value}
-                className={`h-full flex-1 rounded-md ${
+                className={`h-full flex-1 ${
                   prefixIcon ? 'pl-11 pr-3' : 'px-3'
                 } outline-none placeholder:text-sm`}
               />
