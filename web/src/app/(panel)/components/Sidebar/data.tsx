@@ -32,7 +32,7 @@ export const salesLinks: LinkData[] = [
 
 export const customersLinks: LinkData[] = [
   {
-    label: 'Visualizar todos os clientess',
+    label: 'Visualizar todos os clientes',
     path: '/customers',
   },
   {

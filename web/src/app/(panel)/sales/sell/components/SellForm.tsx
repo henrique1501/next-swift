@@ -10,7 +10,7 @@ import { SelectItem } from '../../../components/Select/SelectItem'
 
 export function SellForm() {
   return (
-    <Form.Root className="mt-10 flex w-full flex-col gap-5">
+    <Form.Root className="mt-10 flex w-full flex-col gap-5 overflow-hidden px-4 lg:px-0">
       <div className="w-full">
         <label className="mb-1 block font-medium text-zinc-900">Cliente</label>
 
@@ -23,7 +23,7 @@ export function SellForm() {
       </div>
 
       <div>
-        <div className="flex items-baseline gap-2">
+        <div className="flex flex-col gap-2 lg:flex-row lg:items-baseline">
           <Input
             label="Produto"
             name="product"
@@ -56,7 +56,7 @@ export function SellForm() {
         </Select>
       </div>
 
-      <div className="ml-auto w-[120px]">
+      <div className="ml-auto w-full lg:w-[120px]">
         <Button>Finalizar</Button>
       </div>
     </Form.Root>

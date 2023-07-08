@@ -49,13 +49,13 @@ export function Dropzone({ label, multiple = false }: DropzoneProps) {
       >
         <input {...getInputProps()} multiple={multiple} />
 
-        <div className="flex h-full items-center justify-center">
+        <div className="flex h-full flex-col items-center justify-center lg:flex-row">
           <Image
             src="/upload-1.svg"
             alt=""
             width={600}
             height={600}
-            className="h-48 w-48 object-cover"
+            className="h-40 w-40 object-cover lg:h-48 lg:w-48"
           />
 
           {isDragAccept && (

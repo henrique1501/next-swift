@@ -57,7 +57,10 @@ export function EditorHeader({
 }: EditorHeaderProps) {
   return (
     <div className="flex w-full items-center rounded-tl-lg rounded-tr-lg border-2 border-b-0 border-gray-200 p-2">
-      <div aria-label="Text editor" className="flex items-center gap-2">
+      <div
+        aria-label="Text editor"
+        className="flex flex-wrap items-center gap-2"
+      >
         <TextTypeSelector headingsData={headingsData} />
 
         <Separator />

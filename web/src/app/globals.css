@@ -81,3 +81,20 @@ h6.heading {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

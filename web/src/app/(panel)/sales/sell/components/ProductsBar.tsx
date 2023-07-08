@@ -4,7 +4,10 @@ import { ProductPreview } from './ProductPreview'
 
 export function ProductsBar() {
   return (
-    <ToggleGroup.Root type="single" className="mt-2 space-x-2">
+    <ToggleGroup.Root
+      type="single"
+      className="mt-2 flex flex-wrap items-center gap-2"
+    >
       <ProductPreview value="sdjhsd7sd" />
       <ProductPreview value="hj23hj23" />
       <ProductPreview value="jh45jh45jh" />

@@ -6,7 +6,7 @@ import * as Form from '@radix-ui/react-form'
 
 export function CustomersForm() {
   return (
-    <Form.Root className="mt-10 flex w-full flex-col gap-16">
+    <Form.Root className="mt-10 flex w-full flex-col gap-4 lg:gap-16">
       <div>
         <h2 className="text-xl font-medium text-zinc-900">Dados pessoais</h2>
 
@@ -25,7 +25,7 @@ export function CustomersForm() {
             value="jhondoe@gmail.com"
           />
 
-          <div className="flex items-center gap-6">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center">
             <Input
               name="cpf"
               label="CPF"
@@ -65,7 +65,7 @@ export function CustomersForm() {
             value="Arapiraca 2"
           />
 
-          <div className="flex items-center gap-6">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center">
             <Input
               name="number"
               label="Número"

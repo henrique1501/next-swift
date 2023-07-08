@@ -3,7 +3,7 @@ import { CategoriesTable } from './components/CategoriesTable'
 
 export default function Categories() {
   return (
-    <div className="mx-auto h-full w-full max-w-[768px] py-4">
+    <div className="h-full w-full p-4 lg:mx-auto lg:max-w-[768px]">
       <CategoriesForm />
 
       <CategoriesTable />

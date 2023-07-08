@@ -7,15 +7,16 @@ import { Th } from '../../components/table/Th'
 
 export default function Restore() {
   return (
-    <div className="mx-auto flex h-full w-full max-w-[1126px] flex-col items-center py-4">
+    <div className="flex h-full w-full flex-col items-center lg:mx-auto lg:max-w-[1126px]">
       <h1 className="mt-4 text-2xl font-semibold text-zinc-900">
         Resgate produtos removidos
       </h1>
 
-      <div className="mt-10 flex flex-col gap-4">
-        <div className="ml-auto w-fit">
-          <QuantitySelect />
-        </div>
+      <div className="mt-10 w-fit max-[414px]:ml-4 max-[414px]:mr-auto lg:ml-auto">
+        <QuantitySelect />
+      </div>
+
+      <div className="scrollbar mt-4 max-[414px]:max-w-[400px] max-[414px]:overflow-scroll max-[414px]:px-4">
         <table className="w-[1024px] table-fixed border-spacing-1">
           <thead>
             <tr className="border-b border-gray-200">

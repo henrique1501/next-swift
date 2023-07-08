@@ -27,7 +27,7 @@ export function Select({ placeholder, size = 'lg', children }: SelectProps) {
           position="popper"
           className={`mt-2 ${
             size === 'sm' ? 'w-[258px]' : 'w-[768px]'
-          } overflow-hidden rounded-md border-l border-r border-t border-gray-200 bg-white focus:outline-none`}
+          } overflow-hidden rounded-md border-l border-r border-t border-gray-200 bg-white focus:outline-none max-[414px]:w-[360px]`}
         >
           <PrimitveSelect.Viewport>
             <PrimitveSelect.Group>{children}</PrimitveSelect.Group>

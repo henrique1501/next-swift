@@ -1,7 +1,10 @@
+'use client'
+
 import { Trash2 } from 'lucide-react'
 import { Checkbox } from '../../components/Checkbox'
 import { Td } from '../../components/table/Td'
 import { Th } from '../../components/table/Th'
+import { Tooltip } from '../../components/Tooltip'
 
 export function CategoriesTable() {
   return (
@@ -10,35 +13,45 @@ export function CategoriesTable() {
         Gerencie todas as categorias
       </h2>
 
-      <table className="mt-10 w-full table-fixed border-spacing-1">
-        <thead>
-          <tr className="border-b border-gray-200">
-            <th></th>
-            <Th>ID</Th>
-            <Th>Nome</Th>
-            <Th>Produtos</Th>
-            <Th>Criada em</Th>
-            <th></th>
-          </tr>
-        </thead>
+      <div className="scrollbar max-[414px]:overflow-scroll">
+        <table className="mt-10 w-[520px] table-fixed border-spacing-1 lg:w-full">
+          <thead>
+            <tr className="border-b border-gray-200">
+              <th></th>
+              <Th>ID</Th>
+              <Th>Nome</Th>
+              <Th>Produtos</Th>
+              <Th>Criada em</Th>
+              <th></th>
+            </tr>
+          </thead>
 
-        <tbody className="before-tbody">
-          <tr className="h-14 border-b border-gray-200">
-            <td>
-              <Checkbox />
-            </td>
-            <Td>99df9df7f7</Td>
-            <Td>Camisas</Td>
-            <Td>132</Td>
-            <Td>10/06/2023</Td>
-            <td className="text-center">
-              <button className="rounded-full p-2 transition-all hover:bg-gray-200">
-                <Trash2 className="h-5 w-5 stroke-purple-700" />
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+          <tbody className="before-tbody">
+            <tr className="h-14 border-b border-gray-200">
+              <td>
+                <div className="flex items-center justify-center">
+                  <Checkbox />
+                </div>
+              </td>
+              <Td>
+                <Tooltip content="99df9df7f7j545jh45jh4j5hj45hj4h5jh45jh45jh">
+                  <span className="block w-28 truncate">
+                    99df9df7f7j545jh45jh4j5hj45hj4h5jh45jh45jh
+                  </span>
+                </Tooltip>
+              </Td>
+              <Td>Camisas</Td>
+              <Td>132</Td>
+              <Td>10/06/2023</Td>
+              <td className="text-center">
+                <button className="rounded-full p-2 transition-all hover:bg-gray-200">
+                  <Trash2 className="h-5 w-5 stroke-purple-700" />
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }
