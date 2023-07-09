@@ -1,40 +1,33 @@
 import Image from 'next/image'
 import { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { ImagePreview } from './ImagePreview'
+import { FilePreview } from './FilePreview'
 
-type PreviewImage = {
-  file: File
-  url: string
-}
+export function ExcelDropzone() {
+  const [file, setFile] = useState<File | null>(null)
 
-interface DropzoneProps {
-  label: string
-  multiple?: boolean
-}
+  const onDrop = useCallback(
+    (files: File[]) => {
+      setFile(files[0])
 
-export function Dropzone({ label, multiple = false }: DropzoneProps) {
-  const [previewImages, setPreviewImages] = useState<PreviewImage[]>([])
-
-  const onDrop = useCallback((files: File[]) => {
-    const imagesUrls = files.map((fileContent) => {
-      return {
-        file: fileContent,
-        url: URL.createObjectURL(fileContent),
+      if (file) {
+        // upload file
       }
-    })
+    },
+    [file],
+  )
 
-    setPreviewImages((oldPreviewImages) => [...oldPreviewImages, ...imagesUrls])
-  }, [])
-
-  function removeImage(index: number) {
-    setPreviewImages(previewImages.filter((_, i) => i !== index))
+  function removeImage() {
+    setFile(null)
   }
 
   const { getRootProps, getInputProps, isDragAccept, isDragReject } =
     useDropzone({
       accept: {
-        acceptedFileTypes: ['png', 'jpeg', 'jpg'],
+        acceptedFileTypes: [
+          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+          'text/csv',
+        ],
       },
       onDrop,
     })
@@ -47,11 +40,11 @@ export function Dropzone({ label, multiple = false }: DropzoneProps) {
           isDragAccept ? 'border-purple-700 bg-purple-700/5' : 'border-gray-200'
         } ${isDragReject ? 'border-red-500 bg-red-500/5' : 'border-gray-200'}`}
       >
-        <input {...getInputProps()} multiple={multiple} />
+        <input {...getInputProps()} id="excel-file" />
 
         <div className="flex h-full flex-col items-center justify-center lg:flex-row">
           <Image
-            src="/upload-1.svg"
+            src="/upload-2.svg"
             alt=""
             width={600}
             height={600}
@@ -61,21 +54,21 @@ export function Dropzone({ label, multiple = false }: DropzoneProps) {
           {isDragAccept && (
             <div className="flex flex-col items-center justify-center gap-2">
               <h3 className="text-center text-sm font-medium text-zinc-900">
-                Solte suas imagens aqui
+                Solte seu arquivo aqui
               </h3>
 
-              <p className="text-xs text-purple-700">Imagens permitidas</p>
+              <p className="text-xs text-purple-700">Arquivo permitido</p>
             </div>
           )}
 
           {isDragReject && (
             <div className="flex flex-col items-center justify-center gap-2">
               <h3 className="text-center text-sm font-medium text-zinc-900">
-                Arquivo(s) inválido(s)
+                Arquivo inválido
               </h3>
 
               <p className="text-xs text-purple-700">
-                Extensões permitidas: .png, .jpg, .jpeg
+                Extensões permitidas: .xlsx, .csv
               </p>
             </div>
           )}
@@ -83,7 +76,7 @@ export function Dropzone({ label, multiple = false }: DropzoneProps) {
           {!isDragAccept && !isDragReject && (
             <div className="flex flex-col items-center justify-center gap-2">
               <h3 className="text-sm font-medium text-zinc-900">
-                {label}, ou{' '}
+                Arraste e solte seu arquivo, ou{' '}
                 <span className="font-semibold text-purple-700">Procure</span>
               </h3>
 
@@ -96,14 +89,7 @@ export function Dropzone({ label, multiple = false }: DropzoneProps) {
       </div>
 
       <div className="grid grid-cols-7 items-center gap-4">
-        {previewImages.map((preview, index) => (
-          <ImagePreview
-            key={index}
-            url={preview.url}
-            name={preview.file.name}
-            onRemove={() => removeImage(index)}
-          />
-        ))}
+        {file && <FilePreview name={file.name} onRemove={removeImage} />}
       </div>
     </div>
   )
