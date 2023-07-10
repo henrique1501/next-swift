@@ -1,4 +1,7 @@
-import { LinkData } from './Popover'
+export type LinkData = {
+  label: string
+  path: string
+}
 
 export const productsLinks: LinkData[] = [
   {

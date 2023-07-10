@@ -1,13 +1,12 @@
-import { Menu, User } from 'lucide-react'
+import { User } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { MobileSidebar } from './MobileSidebar'
 
 export function MobileHeader() {
   return (
     <header className="sticky left-0 right-0 top-0 z-20 flex h-16 items-center justify-between border-b border-b-gray-200 px-6 lg:hidden">
-      <button>
-        <Menu className="h-8 w-8" />
-      </button>
+      <MobileSidebar />
 
       <Link href="/dashboard">
         <Image src="/complete-logo.svg" alt="" width={142} height={24} />

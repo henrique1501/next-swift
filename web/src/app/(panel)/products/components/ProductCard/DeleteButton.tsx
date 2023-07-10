@@ -19,7 +19,7 @@ export function DeleteButton() {
           </div>
 
           <Dialog.Title className="pt-5 text-center font-semibold text-white">
-            Edit profile
+            Remover produto
           </Dialog.Title>
 
           <Dialog.Description className="py-5 text-sm text-white/60">

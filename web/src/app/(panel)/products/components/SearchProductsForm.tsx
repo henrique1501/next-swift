@@ -39,6 +39,7 @@ export function SearchProductsForm() {
           prefixIcon={<Search className="h-5 w-5 stroke-gray-300" />}
           className="flex-1"
         />
+
         <Button color="zinc-900">Buscar</Button>
       </div>
     </Form.Form>

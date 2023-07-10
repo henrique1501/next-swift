@@ -1,11 +1,7 @@
 import * as PrimitivePopover from '@radix-ui/react-popover'
 import Link from 'next/link'
 import { ReactNode } from 'react'
-
-export type LinkData = {
-  label: string
-  path: string
-}
+import { LinkData } from './data'
 
 interface PopoverProps {
   links: LinkData[]
