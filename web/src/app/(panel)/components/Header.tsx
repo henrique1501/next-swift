@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { UserPlaceholder } from './UserPlaceholder'
+import { Avatar } from './Avatar'
 
 export function Header() {
   return (
@@ -21,7 +21,7 @@ export function Header() {
           href="/profile"
           className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100"
         >
-          <UserPlaceholder />
+          <Avatar />
         </Link>
       </div>
     </header>

@@ -11,21 +11,42 @@ type PreviewImage = {
 interface DropzoneProps {
   label: string
   id?: string
+  showMultiplePreview?: boolean
+  onChange: (files: File[]) => void
 }
 
-export function Dropzone({ label, id }: DropzoneProps) {
+export function Dropzone({
+  label,
+  id,
+  showMultiplePreview = true,
+  onChange,
+}: DropzoneProps) {
   const [previewImages, setPreviewImages] = useState<PreviewImage[]>([])
 
-  const onDrop = useCallback((files: File[]) => {
-    const imagesUrls = files.map((fileContent) => {
-      return {
-        file: fileContent,
-        url: URL.createObjectURL(fileContent),
-      }
-    })
+  const onDrop = useCallback(
+    (files: File[]) => {
+      if (showMultiplePreview) {
+        const imagesUrls = files.map((fileContent) => {
+          return {
+            file: fileContent,
+            url: URL.createObjectURL(fileContent),
+          }
+        })
 
-    setPreviewImages((oldPreviewImages) => [...oldPreviewImages, ...imagesUrls])
-  }, [])
+        setPreviewImages((oldPreviewImages) => [
+          ...oldPreviewImages,
+          ...imagesUrls,
+        ])
+
+        onChange(files)
+
+        return
+      }
+
+      onChange(files)
+    },
+    [onChange, showMultiplePreview],
+  )
 
   function removeImage(index: number) {
     setPreviewImages(previewImages.filter((_, i) => i !== index))
@@ -96,14 +117,15 @@ export function Dropzone({ label, id }: DropzoneProps) {
       </div>
 
       <div className="grid grid-cols-7 items-center gap-4">
-        {previewImages.map((preview, index) => (
-          <ImagePreview
-            key={index}
-            url={preview.url}
-            name={preview.file.name}
-            onRemove={() => removeImage(index)}
-          />
-        ))}
+        {showMultiplePreview &&
+          previewImages.map((preview, index) => (
+            <ImagePreview
+              key={index}
+              url={preview.url}
+              name={preview.file.name}
+              onRemove={() => removeImage(index)}
+            />
+          ))}
       </div>
     </div>
   )

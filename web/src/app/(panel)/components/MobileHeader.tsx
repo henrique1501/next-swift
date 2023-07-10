@@ -1,7 +1,7 @@
-import { User } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { MobileSidebar } from './MobileSidebar'
+import { Avatar } from './Avatar'
 
 export function MobileHeader() {
   return (
@@ -13,10 +13,10 @@ export function MobileHeader() {
       </Link>
 
       <Link
-        href="#"
+        href="/profile"
         className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100"
       >
-        <User className="h-6 w-6 stroke-gray-500" />
+        <Avatar />
       </Link>
     </header>
   )

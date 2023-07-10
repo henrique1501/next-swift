@@ -13,10 +13,6 @@ export const productsLinks: LinkData[] = [
     path: '/products/add',
   },
   {
-    label: 'Atualizar um produto',
-    path: '/products/update/23',
-  },
-  {
     label: 'Cadastrar produtos via excel',
     path: '/products/import',
   },
