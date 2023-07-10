@@ -1,13 +1,12 @@
 'use client'
 
-import { Select } from '@/app/(panel)/components/Select'
-import { SelectItem } from '@/app/(panel)/components/Select/SelectItem'
-import { Dropzone } from '@/app/(panel)/components/Dropzone'
-import { Button } from '@/components/Button'
 import { Input } from '@/components/Input'
 import * as Form from '@radix-ui/react-form'
+import { Dropzone } from '../../components/Dropzone'
+import { Button } from '@/components/Button'
+import { UserPlaceholder } from '../../components/UserPlaceholder'
 
-export function EmployeesForm() {
+export function ProfileForm() {
   return (
     <Form.Root className="mt-10 flex w-full flex-col gap-4 lg:gap-16">
       <div>
@@ -27,27 +26,27 @@ export function EmployeesForm() {
               placeholder="0 00000000"
               type="number"
             />
-
-            <div>
-              <label>Cargo</label>
-
-              <Select placeholder="Selecione um cargo" size="sm">
-                <SelectItem value="admin">Administrador</SelectItem>
-                <SelectItem value="sub-admin">Sub Administrador</SelectItem>
-              </Select>
-            </div>
           </div>
 
           <div>
-            <label>Foto de perfil</label>
+            <label htmlFor="profile">Foto de perfil</label>
 
-            <Dropzone label="Arraste e solte uma imagem aqui" />
+            <div className="mt-2 flex flex-col items-center gap-4 lg:flex-row lg:items-start">
+              <UserPlaceholder size="lg" />
+
+              <div className="flex-1">
+                <Dropzone
+                  label="Arraste e solte uma imagem aqui"
+                  id="profile"
+                />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="ml-auto w-[120px]">
-        <Button>Adicionar</Button>
+        <div className="ml-auto w-[120px]">
+          <Button>Adicionar</Button>
+        </div>
       </div>
     </Form.Root>
   )

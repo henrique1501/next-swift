@@ -5,7 +5,7 @@ import { Input } from '@/components/Input'
 import * as Form from '@radix-ui/react-form'
 import { FormEvent } from 'react'
 import { Editor } from '../../components/Editor'
-import { Dropzone } from '../../components/Dropzone'
+import { Dropzone } from '../../../components/Dropzone'
 import { TagInput } from '../../components/TagInput'
 
 export function ProductForm() {

@@ -36,7 +36,7 @@ export function ExcelDropzone() {
     <div className="flex flex-col gap-4">
       <div
         {...getRootProps()}
-        className={`h-60 w-full rounded-lg border-2 border-dashed ${
+        className={`h-60 w-full cursor-pointer rounded-lg border-2 border-dashed ${
           isDragAccept ? 'border-purple-700 bg-purple-700/5' : 'border-gray-200'
         } ${isDragReject ? 'border-red-500 bg-red-500/5' : 'border-gray-200'}`}
       >

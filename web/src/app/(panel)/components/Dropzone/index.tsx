@@ -10,10 +10,10 @@ type PreviewImage = {
 
 interface DropzoneProps {
   label: string
-  multiple?: boolean
+  id?: string
 }
 
-export function Dropzone({ label, multiple = false }: DropzoneProps) {
+export function Dropzone({ label, id }: DropzoneProps) {
   const [previewImages, setPreviewImages] = useState<PreviewImage[]>([])
 
   const onDrop = useCallback((files: File[]) => {
@@ -34,7 +34,7 @@ export function Dropzone({ label, multiple = false }: DropzoneProps) {
   const { getRootProps, getInputProps, isDragAccept, isDragReject } =
     useDropzone({
       accept: {
-        acceptedFileTypes: ['png', 'jpeg', 'jpg'],
+        acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg'],
       },
       onDrop,
     })
@@ -43,11 +43,11 @@ export function Dropzone({ label, multiple = false }: DropzoneProps) {
     <div className="flex flex-col gap-4">
       <div
         {...getRootProps()}
-        className={`h-60 w-full rounded-lg border-2 border-dashed ${
+        className={`h-60 w-full cursor-pointer rounded-lg border-2 border-dashed ${
           isDragAccept ? 'border-purple-700 bg-purple-700/5' : 'border-gray-200'
         } ${isDragReject ? 'border-red-500 bg-red-500/5' : 'border-gray-200'}`}
       >
-        <input {...getInputProps()} multiple={multiple} />
+        <input {...getInputProps()} id={id} />
 
         <div className="flex h-full flex-col items-center justify-center lg:flex-row">
           <Image

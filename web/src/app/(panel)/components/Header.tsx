@@ -1,5 +1,5 @@
-import { User } from 'lucide-react'
 import Link from 'next/link'
+import { UserPlaceholder } from './UserPlaceholder'
 
 export function Header() {
   return (
@@ -18,10 +18,10 @@ export function Header() {
         <span className="text-base font-medium text-gray-300">Admin</span>
 
         <Link
-          href="#"
+          href="/profile"
           className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100"
         >
-          <User className="h-6 w-6 stroke-gray-500" />
+          <UserPlaceholder />
         </Link>
       </div>
     </header>
