@@ -7,10 +7,19 @@ import { Th } from '../../components/table/Th'
 import { Datepicker } from '../../products/components/Datepicker'
 import Image from 'next/image'
 import { Tooltip } from '../../components/Tooltip'
+import { Pagnination } from '../../components/Pagnination'
+import { PagninationItem } from '../../components/Pagnination/PagninationItem'
+import { useSearchParams } from 'next/navigation'
 
 export function SalesContent() {
   const [startDate, setStartDate] = useState<Date | null>(null)
   const [endDate, setEndDate] = useState<Date | null>(null)
+
+  const params = useSearchParams()
+
+  const currentPage = params.get('page') ?? '1'
+
+  const pages = [1, 2, 3, 4, 5, 6]
 
   return (
     <>
@@ -89,6 +98,20 @@ export function SalesContent() {
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <div className="mx-auto mt-4">
+        <Pagnination>
+          {pages.map((page) => (
+            <PagninationItem
+              href={`/sales?page=${page}`}
+              key={page}
+              data-active={Number(currentPage) === page}
+            >
+              {page}
+            </PagninationItem>
+          ))}
+        </Pagnination>
       </div>
     </>
   )
