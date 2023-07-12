@@ -25,6 +25,8 @@ export class GetManySuppliersController {
 
     const suppliers = result.suppliers.map(SupplierViewModel.toHttp)
 
+    res.setHeader('x-total-count', String(suppliers.length))
+
     return res.json(suppliers)
   }
 }

@@ -1,38 +1,29 @@
 import { Product } from '@app/entities/Product'
-import { CategoryNotFound } from '@app/errors/CategoryNotFound'
-import { ICategoriesRepository } from '@app/repositories/ICategoriesRepository'
 import { IProductsRepository } from '@app/repositories/IProductsRepository'
 import { Generate } from '@helpers/generate'
 import { redis } from '@infra/database/redis'
 
 interface Request {
-  categoryId: string
-  page?: number
-  limit?: number
+  startDate: string
+  endDate: string
+  search: string
+  page: number
 }
 
 interface Response {
   products: Product[]
 }
 
-export class GetManyProductsByCategoryUseCase {
-  constructor(
-    private productsRepo: IProductsRepository,
-    private categoriesRepo: ICategoriesRepository,
-  ) {}
+export class GetManyProductsBySearchUseCase {
+  constructor(private productsRepo: IProductsRepository) {}
 
   async execute({
-    categoryId,
-    page = 0,
-    limit = 6,
+    startDate,
+    endDate,
+    search,
+    page,
   }: Request): Promise<Response> {
-    const categoryExists = await this.categoriesRepo.findById(categoryId)
-
-    if (!categoryExists) {
-      throw new CategoryNotFound()
-    }
-
-    const cachedProducts = await redis.get('products:many:category')
+    const cachedProducts = await redis.get('products:many:search')
 
     if (cachedProducts) {
       const parsedProducts = JSON.parse(cachedProducts)
@@ -41,14 +32,15 @@ export class GetManyProductsByCategoryUseCase {
       }
     }
 
-    const products = await this.productsRepo.paginate({
-      categoryId,
+    const products = await this.productsRepo.search({
+      startDate,
+      endDate,
+      search,
       page,
-      limit,
     })
 
     await redis.set(
-      'products:many:category',
+      'products:many:search',
       JSON.stringify(products?.map(Generate.redisProduct)),
       'EX',
       '20',

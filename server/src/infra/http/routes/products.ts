@@ -13,6 +13,7 @@ import { UploadProductImagesController } from '../controllers/products/UploadPro
 
 import { AddCategoriesToProductController } from '../controllers/products/AddCategoyToProductController'
 import { GetManyProductsByCategoryController } from '../controllers/products/GetManyProductsByCategoryController'
+import { GetManyProductsBySearchController } from '../controllers/products/GetManyProductsBySearchController'
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated'
 import { is } from '../middlewares/permissions'
 
@@ -29,10 +30,19 @@ const addCategoriesToProductController = new AddCategoriesToProductController()
 const getManyProductsByCategoryController =
   new GetManyProductsByCategoryController()
 
+const getManyProductsBySearchController =
+  new GetManyProductsBySearchController()
+
+productsRoute.get(
+  '/get-many-by-category',
+  ensureAuthenticated,
+  getManyProductsByCategoryController.handle,
+)
+
 productsRoute.get(
   '/search',
   ensureAuthenticated,
-  getManyProductsByCategoryController.handle,
+  getManyProductsBySearchController.handle,
 )
 
 productsRoute.post(

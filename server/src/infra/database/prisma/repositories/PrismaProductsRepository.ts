@@ -2,6 +2,7 @@ import { Product } from '@app/entities/Product'
 import {
   IProductsRepository,
   PaginateProductParams,
+  SearchProductParams,
 } from '@app/repositories/IProductsRepository'
 import { prisma } from '..'
 import { PrismaProductMapper } from '../mappers/PrismaProductMapper'
@@ -112,6 +113,50 @@ export class PrismaProductsRepository implements IProductsRepository {
         },
       },
       take: limit,
+      skip: page,
+      include: {
+        images: true,
+        categories: true,
+      },
+    })
+
+    if (!result) {
+      return null
+    }
+
+    return result.map((product) =>
+      PrismaProductMapper.toDomain({
+        product,
+        images: product.images,
+        categories: product.categories,
+      }),
+    )
+  }
+
+  async search({
+    startDate,
+    endDate,
+    search,
+    page,
+  }: SearchProductParams): Promise<Product[] | null> {
+    const result = await prisma.product.findMany({
+      where: {
+        AND: [
+          {
+            OR: [
+              { name: { contains: search } },
+              { description: { contains: search } },
+            ],
+          },
+          {
+            createdAt: {
+              gte: new Date(startDate),
+              lte: new Date(endDate),
+            },
+          },
+        ],
+      },
+      take: 6,
       skip: page,
       include: {
         images: true,
