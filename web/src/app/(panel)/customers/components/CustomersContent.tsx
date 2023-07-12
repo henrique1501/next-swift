@@ -1,11 +1,23 @@
+'use client'
+
 import { Trash2 } from 'lucide-react'
 import { Checkbox } from '../../components/Checkbox'
 import { QuantitySelect } from '../../components/QuantitySelect'
 // import { Tooltip } from '../../components/Tooltip'
 import { Td } from '../../components/table/Td'
 import { Th } from '../../components/table/Th'
+import { Pagnination } from '../../components/Pagnination'
+import { useSearchParams } from 'next/navigation'
+import { useState } from 'react'
 
 export function CustomersContent() {
+  const [isShowingDeleteBtn, setIsShowingDeleteBtn] = useState(false)
+
+  const params = useSearchParams()
+
+  const page = params.get('page') ?? '1'
+  const currentPage = Number(page)
+
   return (
     <div className="mt-10 flex flex-col gap-4">
       <div className="w-fit max-[414px]:mr-auto max-[414px]:px-4 lg:ml-auto">
@@ -31,7 +43,10 @@ export function CustomersContent() {
           <tbody className="before-tbody">
             <tr className="h-14 border-b border-gray-200">
               <td>
-                <Checkbox />
+                <Checkbox
+                  checked={isShowingDeleteBtn}
+                  onChange={setIsShowingDeleteBtn}
+                />
               </td>
               <Td>
                 <span className="block w-24 truncate">Jhon doe</span>
@@ -45,13 +60,23 @@ export function CustomersContent() {
               <Td>10/06/2023</Td>
               <Td>16/06/2023</Td>
               <td className="text-center">
-                <button className="rounded-full p-2 transition-all hover:bg-gray-200">
-                  <Trash2 className="h-5 w-5 stroke-purple-700" />
-                </button>
+                {isShowingDeleteBtn && (
+                  <button className="rounded-full p-2 transition-all hover:bg-gray-200">
+                    <Trash2 className="h-5 w-5 stroke-purple-700" />
+                  </button>
+                )}
               </td>
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <div className="mx-auto mt-4">
+        <Pagnination
+          totalCount={300}
+          currentPage={currentPage}
+          baseUrl="/customers?page"
+        />
       </div>
     </div>
   )

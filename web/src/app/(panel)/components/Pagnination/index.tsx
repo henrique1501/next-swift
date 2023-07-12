@@ -1,3 +1,4 @@
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { PagninationItem } from './PagninationItem'
 
 interface PagninationProps {
@@ -40,6 +41,12 @@ export function Pagnination({
 
   return (
     <div className="flex items-center gap-2 rounded-md border border-gray-200 p-2">
+      {currentPage > 1 && (
+        <PagninationItem href={`${baseUrl}=${currentPage - 1}`}>
+          <ChevronLeft className="h-6 w-6 stroke-zinc-900" />
+        </PagninationItem>
+      )}
+
       {currentPage > 2 && (
         <>
           <PagninationItem href={`${baseUrl}=1`}>1</PagninationItem>
@@ -86,6 +93,12 @@ export function Pagnination({
             {lastPage}
           </PagninationItem>
         </>
+      )}
+
+      {currentPage < lastPage && (
+        <PagninationItem href={`${baseUrl}=${currentPage + 1}`}>
+          <ChevronRight className="h-6 w-6 stroke-zinc-900" />
+        </PagninationItem>
       )}
     </div>
   )

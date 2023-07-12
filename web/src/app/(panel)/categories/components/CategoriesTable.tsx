@@ -5,8 +5,11 @@ import { Checkbox } from '../../components/Checkbox'
 import { Td } from '../../components/table/Td'
 import { Th } from '../../components/table/Th'
 import { Tooltip } from '../../components/Tooltip'
+import { useState } from 'react'
 
 export function CategoriesTable() {
+  const [isShowingDeleteBtn, setIsShowingDeleteBtn] = useState(false)
+
   return (
     <div className="mt-20">
       <h2 className="text-2xl font-semibold text-zinc-900">
@@ -30,7 +33,10 @@ export function CategoriesTable() {
             <tr className="h-14 border-b border-gray-200">
               <td>
                 <div className="flex items-center justify-center">
-                  <Checkbox />
+                  <Checkbox
+                    checked={isShowingDeleteBtn}
+                    onChange={setIsShowingDeleteBtn}
+                  />
                 </div>
               </td>
               <Td>
@@ -43,10 +49,12 @@ export function CategoriesTable() {
               <Td>Camisas</Td>
               <Td>132</Td>
               <Td>10/06/2023</Td>
-              <td className="text-center">
-                <button className="rounded-full p-2 transition-all hover:bg-gray-200">
-                  <Trash2 className="h-5 w-5 stroke-purple-700" />
-                </button>
+              <td>
+                {isShowingDeleteBtn && (
+                  <button className="rounded-full p-2 transition-all hover:bg-gray-200">
+                    <Trash2 className="h-5 w-5 stroke-purple-700" />
+                  </button>
+                )}
               </td>
             </tr>
           </tbody>

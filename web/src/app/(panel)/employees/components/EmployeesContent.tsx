@@ -6,8 +6,11 @@ import { QuantitySelect } from '../../components/QuantitySelect'
 import { Tooltip } from '../../components/Tooltip'
 import { Td } from '../../components/table/Td'
 import { Th } from '../../components/table/Th'
+import { useState } from 'react'
 
 export function EmployeesContent() {
+  const [isShowingDismissBtn, setIsShowingDismissBtn] = useState(false)
+
   return (
     <div className="mt-4 flex flex-col gap-4">
       <div className="w-fit max-[414px]:ml-4 max-[414px]:mr-auto lg:ml-auto">
@@ -34,7 +37,10 @@ export function EmployeesContent() {
             <tr className="h-14 border-b border-gray-200">
               <td>
                 <div className="flex h-full items-center justify-center">
-                  <Checkbox />
+                  <Checkbox
+                    checked={isShowingDismissBtn}
+                    onChange={setIsShowingDismissBtn}
+                  />
                 </div>
               </td>
               <Td>
@@ -55,9 +61,11 @@ export function EmployeesContent() {
               <Td>10/06/2023</Td>
               <Td>16/06/2023</Td>
               <td className="text-center">
-                <button className="rounded-full p-2 transition-all hover:bg-gray-200">
-                  <Ban className="h-5 w-5 stroke-purple-700" />
-                </button>
+                {isShowingDismissBtn && (
+                  <button className="rounded-full p-2 transition-all hover:bg-gray-200">
+                    <Ban className="h-5 w-5 stroke-purple-700" />
+                  </button>
+                )}
               </td>
             </tr>
           </tbody>
