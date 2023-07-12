@@ -25,15 +25,22 @@ import {
   salesLinks,
   suppliersLinks,
 } from '../Sidebar/data'
+import { useEffect, useState } from 'react'
 
 export function MobileSidebar() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const pathName = usePathname()
 
   const isActive = (path: string) => {
     return pathName.startsWith(`/${path}`)
   }
+
+  useEffect(() => {
+    setIsSidebarOpen(false)
+  }, [pathName])
+
   return (
-    <Dialog.Root>
+    <Dialog.Root open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
       <Dialog.Trigger asChild>
         <button>
           <Menu className="h-8 w-8" />
