@@ -8,7 +8,6 @@ import { Datepicker } from '../../products/components/Datepicker'
 import Image from 'next/image'
 import { Tooltip } from '../../components/Tooltip'
 import { Pagnination } from '../../components/Pagnination'
-import { PagninationItem } from '../../components/Pagnination/PagninationItem'
 import { useSearchParams } from 'next/navigation'
 
 export function SalesContent() {
@@ -17,9 +16,8 @@ export function SalesContent() {
 
   const params = useSearchParams()
 
-  const currentPage = params.get('page') ?? '1'
-
-  const pages = [1, 2, 3, 4, 5, 6]
+  const page = params.get('page') ?? '1'
+  const currentPage = Number(page)
 
   return (
     <>
@@ -101,17 +99,11 @@ export function SalesContent() {
       </div>
 
       <div className="mx-auto mt-4">
-        <Pagnination>
-          {pages.map((page) => (
-            <PagninationItem
-              href={`/sales?page=${page}`}
-              key={page}
-              data-active={Number(currentPage) === page}
-            >
-              {page}
-            </PagninationItem>
-          ))}
-        </Pagnination>
+        <Pagnination
+          totalCount={300}
+          currentPage={currentPage}
+          baseUrl="/sales?page"
+        />
       </div>
     </>
   )
