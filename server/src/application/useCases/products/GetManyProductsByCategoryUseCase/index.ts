@@ -8,7 +8,6 @@ import { redis } from '@infra/database/redis'
 interface Request {
   categoryId: string
   page?: number
-  limit?: number
 }
 
 interface Response {
@@ -21,11 +20,7 @@ export class GetManyProductsByCategoryUseCase {
     private categoriesRepo: ICategoriesRepository,
   ) {}
 
-  async execute({
-    categoryId,
-    page = 0,
-    limit = 6,
-  }: Request): Promise<Response> {
+  async execute({ categoryId, page = 0 }: Request): Promise<Response> {
     const categoryExists = await this.categoriesRepo.findById(categoryId)
 
     if (!categoryExists) {
@@ -44,7 +39,6 @@ export class GetManyProductsByCategoryUseCase {
     const products = await this.productsRepo.paginate({
       categoryId,
       page,
-      limit,
     })
 
     await redis.set(

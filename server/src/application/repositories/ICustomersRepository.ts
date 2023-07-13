@@ -1,7 +1,6 @@
 import { Customer } from '@app/entities/Customer'
 
 export type PaginateParams = {
-  search: string
   page: number
   limit: number
 }

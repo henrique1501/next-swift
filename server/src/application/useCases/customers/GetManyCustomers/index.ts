@@ -4,7 +4,6 @@ import { Generate } from '@helpers/generate'
 import { redis } from '@infra/database/redis'
 
 interface Request {
-  search: string
   page?: number
   limit?: number
 }
@@ -16,7 +15,7 @@ interface Response {
 export class GetManyCustomersUseCase {
   constructor(private customersRepo: ICustomersRepository) {}
 
-  async execute({ search, page = 0, limit = 10 }: Request): Promise<Response> {
+  async execute({ page = 0, limit = 10 }: Request): Promise<Response> {
     const cachedCustomers = await redis.get('customers:many')
 
     if (cachedCustomers) {
@@ -28,7 +27,6 @@ export class GetManyCustomersUseCase {
     }
 
     const customers = await this.customersRepo.paginate({
-      search,
       page,
       limit,
     })

@@ -1,5 +1,4 @@
 import { GetManyProductsBySearchUseCase } from '@app/useCases/products/GetManyProductsBySearchUseCase'
-import { PrismaCategoriesRepository } from '@infra/database/prisma/repositories/PrismaCategoriesRepository'
 import { PrismaProductsRepository } from '@infra/database/prisma/repositories/PrismaProductsRepository'
 import { ProductViewModel } from '@infra/http/viewModels/ProductViewModel'
 import { Request, Response } from 'express'

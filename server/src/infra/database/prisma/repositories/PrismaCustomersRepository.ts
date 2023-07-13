@@ -35,18 +35,8 @@ export class PrismaCustomersRepository implements ICustomersRepository {
     return PrismaCustomersMapper.toDomain(customer)
   }
 
-  async paginate({
-    search,
-    page,
-    limit,
-  }: PaginateParams): Promise<Customer[] | null> {
+  async paginate({ page, limit }: PaginateParams): Promise<Customer[] | null> {
     const result = await prisma.customer.findMany({
-      where: {
-        name: {
-          contains: search,
-          mode: 'insensitive',
-        },
-      },
       skip: page,
       take: limit,
     })

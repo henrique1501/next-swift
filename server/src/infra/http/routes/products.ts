@@ -16,6 +16,7 @@ import { GetManyProductsByCategoryController } from '../controllers/products/Get
 import { GetManyProductsBySearchController } from '../controllers/products/GetManyProductsBySearchController'
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated'
 import { is } from '../middlewares/permissions'
+import { GetAllProductsController } from '../controllers/products/GetAllProductsController'
 
 const productsRoute = Router()
 const uploader = multer(UploaderConfig.execute('product'))
@@ -32,6 +33,10 @@ const getManyProductsByCategoryController =
 
 const getManyProductsBySearchController =
   new GetManyProductsBySearchController()
+
+const getAllProductsController = new GetAllProductsController()
+
+productsRoute.get('/', ensureAuthenticated, getAllProductsController.handle)
 
 productsRoute.get(
   '/get-many-by-category',

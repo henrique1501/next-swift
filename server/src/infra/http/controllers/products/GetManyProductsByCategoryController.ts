@@ -13,7 +13,7 @@ const querySchema = z.object({
 
 export class GetManyProductsByCategoryController {
   async handle(req: Request, res: Response): Promise<Response> {
-    const { categoryId, page = 0, limit = 6 } = querySchema.parse(req.query)
+    const { categoryId, page = 0, limit = 10 } = querySchema.parse(req.query)
 
     const productsRepo = new PrismaProductsRepository()
     const categoriesRepo = new PrismaCategoriesRepository()

@@ -8,6 +8,25 @@ import { prisma } from '..'
 import { PrismaProductMapper } from '../mappers/PrismaProductMapper'
 
 export class PrismaProductsRepository implements IProductsRepository {
+  async findAll(): Promise<Product[]> {
+    const products = await prisma.product.findMany({
+      include: {
+        images: true,
+        categories: true,
+      },
+    })
+
+    const result = products.map((product) => {
+      return PrismaProductMapper.toDomain({
+        product,
+        images: product.images,
+        categories: product.categories,
+      })
+    })
+
+    return result
+  }
+
   async findById(productId: string): Promise<Product | null> {
     const product = await prisma.product.findUnique({
       where: {
@@ -112,7 +131,7 @@ export class PrismaProductsRepository implements IProductsRepository {
           },
         },
       },
-      take: limit,
+      take: limit ?? 10,
       skip: page,
       include: {
         images: true,
@@ -156,7 +175,7 @@ export class PrismaProductsRepository implements IProductsRepository {
           },
         ],
       },
-      take: 6,
+      take: 10,
       skip: page,
       include: {
         images: true,

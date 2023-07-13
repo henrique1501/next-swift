@@ -32,6 +32,7 @@ export class AddCategoyToProductUseCase {
     product.categories = categories.filter(
       (category) => !categoriesIds.includes(category.id),
     )
+
     product.update()
 
     await this.productsRepo.save(product)
