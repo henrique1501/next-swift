@@ -68,7 +68,10 @@ export function ProductForm() {
         <label className="mb-1 text-sm font-medium text-zinc-900">
           Imagens
         </label>
-        <Dropzone label="Arraste e solte suas imagens aqui" />
+        <Dropzone
+          label="Arraste e solte suas imagens aqui"
+          onChange={() => console.log()}
+        />
       </div>
 
       <TagInput />

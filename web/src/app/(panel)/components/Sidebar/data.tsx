@@ -17,6 +17,14 @@ export const productsLinks: LinkData[] = [
     path: '/products/import',
   },
   {
+    label: 'Adicione imagens a um produto',
+    path: '/products/images/upload',
+  },
+  {
+    label: 'Remova imagens de um produto',
+    path: '/products/images/remove',
+  },
+  {
     label: 'Resgatar produtos',
     path: '/products/restore',
   },
