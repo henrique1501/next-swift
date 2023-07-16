@@ -9,10 +9,16 @@ import Image from 'next/image'
 import { Tooltip } from '../../components/Tooltip'
 import { Pagnination } from '../../components/Pagnination'
 import { useSearchParams } from 'next/navigation'
+import dayjs from 'dayjs'
 
 export function SalesContent() {
-  const [startDate, setStartDate] = useState<Date | null>(null)
-  const [endDate, setEndDate] = useState<Date | null>(null)
+  const [startDate, setStartDate] = useState<Date>(() => {
+    return dayjs().set('date', 1).toDate()
+  })
+
+  const [endDate, setEndDate] = useState<Date>(() => {
+    return dayjs().endOf('month').toDate()
+  })
 
   const params = useSearchParams()
 

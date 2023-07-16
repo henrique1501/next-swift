@@ -37,6 +37,7 @@
     "autoprefixer": "10.4.14",
     "dayjs": "^1.11.8",
     "eslint-config-next": "13.4.6",
+    "framer-motion": "^10.12.21",
     "js-cookie": "^3.0.5",
     "jwt-decode": "^3.1.2",
     "lucide-react": "^0.252.0",

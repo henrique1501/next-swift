@@ -14,25 +14,29 @@ export function ProductsContent() {
         <AddProductLink path="/products/add" />
       </div>
 
-      <ul className="mt-10 flex flex-col items-center gap-4 md:grid md:grid-cols-3 lg:mx-auto lg:flex lg:w-full lg:max-w-5xl lg:flex-row lg:flex-wrap">
+      <ul className="mt-10 flex flex-col items-center gap-4 md:grid md:grid-cols-3 lg:mx-auto lg:flex lg:max-w-6xl lg:flex-row lg:flex-wrap">
         <li>
-          <ProductCard path="" />
+          <ProductCard />
         </li>
 
         <li>
-          <ProductCard path="" />
+          <ProductCard />
         </li>
 
         <li>
-          <ProductCard path="" />
+          <ProductCard />
         </li>
 
         <li>
-          <ProductCard path="" />
+          <ProductCard />
         </li>
 
         <li>
-          <ProductCard path="" />
+          <ProductCard />
+        </li>
+
+        <li>
+          <ProductCard />
         </li>
       </ul>
     </div>

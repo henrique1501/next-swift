@@ -6,7 +6,7 @@ import { Button } from '@/components/Button'
 import { ProductsBar } from './ProductsBar'
 import { Search } from 'lucide-react'
 import { Select } from '../../../components/Select'
-import { SelectItem } from '../../../components/Select/SelectItem'
+import { customersOptions, paymentsOptions } from '../data'
 
 export function SellForm() {
   return (
@@ -14,12 +14,7 @@ export function SellForm() {
       <div className="w-full">
         <label className="mb-1 block font-medium text-zinc-900">Cliente</label>
 
-        <Select placeholder="Escolha um cliente">
-          <SelectItem value="Jhon doe">Jhon doe</SelectItem>
-          <SelectItem value="Henrique monteiro">Henrique monteiro</SelectItem>
-          <SelectItem value="Diego fernandes">Diego fernandes</SelectItem>
-          <SelectItem value="Mayk brito">Mayk brito</SelectItem>
-        </Select>
+        <Select placeholder="Escolha um cliente" options={customersOptions} />
       </div>
 
       <div>
@@ -49,11 +44,10 @@ export function SellForm() {
           Método de pagamento
         </label>
 
-        <Select placeholder="Selecione um método de pagamento">
-          <SelectItem value="CASH">Dinheiro</SelectItem>
-          <SelectItem value="CREDIT_CARD">Cartão de crédito</SelectItem>
-          <SelectItem value="DEBIT_CARD">Cartão de débito</SelectItem>
-        </Select>
+        <Select
+          placeholder="Selecione um método de pagamento"
+          options={paymentsOptions}
+        />
       </div>
 
       <div className="ml-auto w-full lg:w-[120px]">

@@ -1,5 +1,3 @@
-'use client'
-
 import { Edit3 } from 'lucide-react'
 import { DeleteButton } from './DeleteButton'
 import Link from 'next/link'
@@ -12,7 +10,10 @@ export function Info() {
       </h2>
 
       <div className="flex items-center gap-2">
-        <Link href={`/products/update/126126`}>
+        <Link
+          href={`/products/update/126126`}
+          className="rounded-full p-2 transition-all hover:bg-gray-200"
+        >
           <Edit3 className="h-5 w-5 stroke-purple-700" />
         </Link>
 

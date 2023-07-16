@@ -2,13 +2,12 @@
 
 import { Checkbox } from '@/app/(panel)/components/Checkbox'
 import { Select } from '@/app/(panel)/components/Select'
-import { SelectItem } from '@/app/(panel)/components/Select/SelectItem'
 import { Td } from '@/app/(panel)/components/table/Td'
 import { Th } from '@/app/(panel)/components/table/Th'
 import { Trash2 } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
-import { data } from '../data'
+import { data, selectOptions } from '../data'
 import { Tooltip } from '@/app/(panel)/components/Tooltip'
 
 export function ProductImagesContent() {
@@ -30,11 +29,7 @@ export function ProductImagesContent() {
 
   return (
     <div className="flex w-full flex-col gap-5">
-      <Select placeholder="Selecione um produto">
-        <SelectItem value="26526352635">Camiseta preta</SelectItem>
-        <SelectItem value="476763476346">Camiseta branca</SelectItem>
-        <SelectItem value="fdjh45h45hg45">Camiseta azul</SelectItem>
-      </Select>
+      <Select placeholder="Selecione um produto" options={selectOptions} />
 
       <div>
         <table className="mt-10 w-full table-fixed border-spacing-1">

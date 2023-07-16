@@ -44,10 +44,14 @@ export function EmployeesContent() {
                 </div>
               </td>
               <Td>
-                <span className="block w-24 truncate">Jhon doe</span>
+                <Tooltip content="Jhon doe" side="top">
+                  <span className="block w-24 truncate">Jhon doe</span>
+                </Tooltip>
               </Td>
               <Td>
-                <span className="block w-24 truncate">jhondoe@gmail.com</span>
+                <Tooltip content="jhondoe@gmail.com" side="top">
+                  <span className="block w-24 truncate">jhondoe@gmail.com</span>
+                </Tooltip>
               </Td>
               <Td>
                 <Tooltip content="60.424.941/0001-84" side="top">

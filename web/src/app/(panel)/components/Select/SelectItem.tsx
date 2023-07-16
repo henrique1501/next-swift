@@ -10,7 +10,7 @@ export function SelectItem({ value, children }: SelectItemProps) {
   return (
     <PrimitveSelect.Item
       value={value}
-      className={`w-full cursor-pointer border-b border-gray-200 p-2 transition-colors hover:text-purple-700 focus:outline-none`}
+      className={`w-full cursor-pointer p-2 transition-colors hover:text-purple-700 focus:outline-none`}
     >
       <PrimitveSelect.ItemText>{children}</PrimitveSelect.ItemText>
     </PrimitveSelect.Item>

@@ -50,10 +50,6 @@ export const customersLinks: LinkData[] = [
     label: 'Adicionar um novo cliente',
     path: '/customers/add',
   },
-  {
-    label: 'Atualizar um cliente',
-    path: '/customers/update/1234',
-  },
 ]
 
 export const employeesLinks: LinkData[] = [

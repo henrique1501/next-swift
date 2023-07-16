@@ -1,16 +1,22 @@
 'use client'
 
 import * as Form from '@radix-ui/react-form'
+import dayjs from 'dayjs'
+import { Search } from 'lucide-react'
 
 import { Button } from '@/components/Button'
 import { Input } from '@/components/Input'
-import { Search } from 'lucide-react'
 import { useState } from 'react'
 import { Datepicker } from './Datepicker'
 
 export function SearchProductsForm() {
-  const [startDate, setStartDate] = useState<Date | null>(null)
-  const [endDate, setEndDate] = useState<Date | null>(null)
+  const [startDate, setStartDate] = useState<Date>(() => {
+    return dayjs().set('date', 1).toDate()
+  })
+
+  const [endDate, setEndDate] = useState<Date>(() => {
+    return dayjs().endOf('month').toDate()
+  })
 
   return (
     <Form.Form className="flex w-full flex-col gap-4 px-6 md:flex-row md:items-center md:justify-between md:gap-0 lg:px-0">

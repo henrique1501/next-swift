@@ -1,6 +1,6 @@
 'use client'
 
-import { Trash2 } from 'lucide-react'
+import { Edit3, Trash2 } from 'lucide-react'
 import { Checkbox } from '../../components/Checkbox'
 import { QuantitySelect } from '../../components/QuantitySelect'
 // import { Tooltip } from '../../components/Tooltip'
@@ -9,9 +9,11 @@ import { Th } from '../../components/table/Th'
 import { Pagnination } from '../../components/Pagnination'
 import { useSearchParams } from 'next/navigation'
 import { useState } from 'react'
+import { Tooltip } from '../../components/Tooltip'
+import Link from 'next/link'
 
 export function CustomersContent() {
-  const [isShowingDeleteBtn, setIsShowingDeleteBtn] = useState(false)
+  const [isShowingActionsBtn, setIsShowingActionsBtn] = useState(false)
 
   const params = useSearchParams()
 
@@ -43,28 +45,45 @@ export function CustomersContent() {
           <tbody className="before-tbody">
             <tr className="h-14 border-b border-gray-200">
               <td>
-                <Checkbox
-                  checked={isShowingDeleteBtn}
-                  onChange={setIsShowingDeleteBtn}
-                />
+                <div className="flex items-center justify-center">
+                  <Checkbox
+                    checked={isShowingActionsBtn}
+                    onChange={setIsShowingActionsBtn}
+                  />
+                </div>
               </td>
               <Td>
-                <span className="block w-24 truncate">Jhon doe</span>
+                <Tooltip content="Jhon doe" side="top">
+                  <span className="block w-24 truncate">Jhon doe</span>
+                </Tooltip>
               </Td>
               <Td>
-                <span className="block w-24 truncate">jhondoe@gmail.com</span>
+                <Tooltip content="jhondoe@gmail.com" side="top">
+                  <span className="block w-24 truncate">jhondoe@gmail.com</span>
+                </Tooltip>
               </Td>
               <Td>134.607.274-09</Td>
               <Td className="pl-4">82</Td>
               <Td>9 99990906</Td>
               <Td>10/06/2023</Td>
               <Td>16/06/2023</Td>
-              <td className="text-center">
-                {isShowingDeleteBtn && (
-                  <button className="rounded-full p-2 transition-all hover:bg-gray-200">
-                    <Trash2 className="h-5 w-5 stroke-purple-700" />
-                  </button>
-                )}
+              <td>
+                <div className="flex items-center justify-center gap-2">
+                  {isShowingActionsBtn && (
+                    <>
+                      <Link
+                        href={`/customers/update/1234`}
+                        className="rounded-full p-2 transition-all hover:bg-gray-200"
+                      >
+                        <Edit3 className="h-5 w-5 stroke-purple-700" />
+                      </Link>
+
+                      <button className="rounded-full p-2 transition-all hover:bg-gray-200">
+                        <Trash2 className="h-5 w-5 stroke-purple-700" />
+                      </button>
+                    </>
+                  )}
+                </div>
               </td>
             </tr>
           </tbody>

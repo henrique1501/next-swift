@@ -1,5 +1,6 @@
 import * as PrimitiveTooltip from '@radix-ui/react-tooltip'
 import { ReactNode } from 'react'
+import { motion } from 'framer-motion'
 
 interface TooltipProps {
   content: string
@@ -21,8 +22,20 @@ export function Tooltip({ content, side = 'right', children }: TooltipProps) {
               side === 'bottom' && 'mt-2'
             } rounded-md bg-purple-700 p-2 text-xs font-medium text-white`}
             side={side}
+            asChild
           >
-            {content}
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{
+                scale: 1,
+              }}
+              exit={{
+                scale: 0,
+              }}
+              transition={{ type: 'spring', duration: 0.25 }}
+            >
+              {content}
+            </motion.div>
           </PrimitiveTooltip.Content>
         </PrimitiveTooltip.Portal>
       </PrimitiveTooltip.Root>

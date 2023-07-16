@@ -1,6 +1,7 @@
 'use client'
 
 import * as Popover from '@radix-ui/react-popover'
+import { motion } from 'framer-motion'
 
 import dayjs from 'dayjs'
 import ptBr from 'dayjs/locale/pt-br'
@@ -10,9 +11,9 @@ import { Calendar } from './Calendar'
 dayjs.locale(ptBr)
 
 interface DatepickerProps {
-  selectedDate: Date | null
+  selectedDate: Date
   onDateSelected: (date: Date) => void
-  comparedDate: Date | null
+  comparedDate: Date
   label: string
 }
 
@@ -30,25 +31,30 @@ export function Datepicker({
         <Popover.Trigger asChild>
           <button
             type="button"
-            className="flex items-center gap-2 rounded-md bg-gray-50 p-2 transition-all hover:brightness-95"
+            className="flex items-center gap-1 rounded-md bg-gray-50 p-2 transition-all hover:brightness-95"
           >
-            <CalendarDays className="h-6 w-6 stroke-gray-300" />{' '}
+            <CalendarDays className="hidden h-6 w-6 stroke-gray-300 md:block" />{' '}
             <span className="text-sm font-medium text-gray-300">
-              {selectedDate
-                ? dayjs(selectedDate).format('DD/MM/YYYY')
-                : dayjs(new Date()).format('DD/MM/YYYY')}
+              {dayjs(selectedDate).format('DD/MM/YYYY')}
             </span>
           </button>
         </Popover.Trigger>
       </div>
 
       <Popover.Portal>
-        <Popover.Content className="mt-2">
-          <Calendar
-            selectedDate={selectedDate}
-            onDateSelected={onDateSelected}
-            comparedDate={comparedDate}
-          />
+        <Popover.Content className="mt-2" asChild>
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0 }}
+            transition={{ type: 'spring', duration: 0.5 }}
+          >
+            <Calendar
+              selectedDate={selectedDate}
+              onDateSelected={onDateSelected}
+              comparedDate={comparedDate}
+            />
+          </motion.div>
         </Popover.Content>
       </Popover.Portal>
     </Popover.Root>
