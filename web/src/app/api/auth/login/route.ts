@@ -1,5 +1,5 @@
 import { api } from '@/libs/api'
-import { NextRequest, NextResponse } from 'next/server'
+import Cookie from 'cookie'
 
 interface SessionResponse {
   token: string
@@ -11,7 +11,7 @@ interface SessionResponse {
   }
 }
 
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
   const { email, password } = await req.json()
 
   const res = await api.post<SessionResponse>('/session', {
@@ -21,16 +21,18 @@ export async function POST(req: NextRequest) {
 
   const { token } = res.data
 
-  const redirectUrl = new URL(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard`,
-    req.url,
-  )
+  const cookieExpiresTime = 60 * 60 * 24 * 30 // 30 days
 
-  const cookieExpiresInSeconds = 60 * 15 // 15 minutes
+  const header = Cookie.serialize('@ns:token', token, {
+    httpOnly: false,
+    path: '/',
+    maxAge: cookieExpiresTime,
+  })
 
-  return NextResponse.redirect(redirectUrl, {
+  return new Response(null, {
     headers: {
-      'Set-Cookie': `token=${token}; Path=/; max-age=${cookieExpiresInSeconds};`,
+      'Set-Cookie': header,
     },
+    status: 200,
   })
 }
