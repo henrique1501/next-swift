@@ -11,6 +11,9 @@ import * as zod from 'zod'
 import { Button } from './Button'
 import { Input } from './Input'
 import { PasswordInput } from './PasswordInput'
+import axios from 'axios'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 const signInFormValidationSchema = zod.object({
   email: zod.string(),
@@ -24,15 +27,31 @@ export function SignInForm() {
     resolver: zodResolver(signInFormValidationSchema),
   })
 
-  function handleSignIn({ email, password }: SignInFormData) {
-    console.log({
-      email,
-      password,
-    })
+  const router = useRouter()
+
+  const [isLoading, setIsLoading] = useState(false)
+
+  async function handleSignIn({ email, password }: SignInFormData) {
+    try {
+      setIsLoading(true)
+
+      await axios.post('/api/auth/login', {
+        email,
+        password,
+      })
+
+      setIsLoading(false)
+
+      router.push('/dashboard')
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
-    <Form.Form onSubmit={handleSubmit(handleSignIn)}>
+    <Form.Form onSubmit={handleSubmit(handleSignIn)} method="POST">
       <Input
         label="Email"
         type="email"
@@ -68,7 +87,7 @@ export function SignInForm() {
         Esqueceu a senha?
       </Link>
 
-      <Button>Entrar</Button>
+      <Button isLoading={isLoading}>Entrar</Button>
     </Form.Form>
   )
 }
