@@ -7,7 +7,7 @@ export function DeleteButton() {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <button>
+        <button className="rounded-full p-2 transition-all hover:bg-gray-200">
           <Trash2 className="h-5 w-5 stroke-zinc-900" />
         </button>
       </Dialog.Trigger>

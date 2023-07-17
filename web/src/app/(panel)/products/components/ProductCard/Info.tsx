@@ -9,7 +9,7 @@ export function Info() {
         <strong className="text-lg text-purple-700">R$67,90</strong> / 3 pcs
       </h2>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1">
         <Link
           href={`/products/update/126126`}
           className="rounded-full p-2 transition-all hover:bg-gray-200"
