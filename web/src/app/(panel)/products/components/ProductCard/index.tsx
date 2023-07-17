@@ -4,7 +4,7 @@ import { Info } from './Info'
 
 export function ProductCard() {
   return (
-    <div className="flex h-[300px] w-64 flex-col justify-between rounded-lg border border-gray-200 p-4 transition-shadow hover:shadow-product-shadow">
+    <div className="flex h-[300px] w-64 flex-col justify-between rounded-lg border border-gray-200 bg-white p-4 transition-shadow hover:shadow-product-shadow">
       <Image
         src="/shirt.png"
         alt=""
