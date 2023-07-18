@@ -3,11 +3,11 @@ import { MouseEvent, useState } from 'react'
 import { motion } from 'framer-motion'
 
 interface TagInputProps {
-  value?: string[]
+  selectedTags: string[]
+  onChange: (tags: string[]) => void
 }
 
-export function TagInput({ value = [] }: TagInputProps) {
-  const [selectedTags, setSelectedTags] = useState<string[]>(value)
+export function TagInput({ selectedTags, onChange }: TagInputProps) {
   const [tagContent, setTagContent] = useState('')
 
   function handleAddTag(
@@ -16,13 +16,13 @@ export function TagInput({ value = [] }: TagInputProps) {
     if (tagContent !== '') {
       e.preventDefault()
 
-      setSelectedTags([...selectedTags, tagContent])
+      onChange([...selectedTags, tagContent])
       setTagContent('')
     }
   }
 
   function handleRemoveTag(i: number) {
-    setSelectedTags(selectedTags.filter((_, index) => index !== i))
+    onChange(selectedTags.filter((_, index) => index !== i))
   }
 
   return (

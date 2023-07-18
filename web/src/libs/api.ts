@@ -1,15 +1,15 @@
-import axios, { AxiosError } from 'axios'
+import axios from 'axios'
 import cookies from 'js-cookie'
 
-interface ApiError {
-  message: {
-    error: boolean
-    code: string
-  }
-}
+// interface ApiError {
+//   message: {
+//     error: boolean
+//     code: string
+//   }
+// }
 
-let isRefreshing = false
-let failedRequestsQueue: any[] = []
+// const isRefreshing = false
+// const failedRequestsQueue: any[] = []
 
 const rsToken = cookies.get('token')
 
@@ -20,73 +20,77 @@ export const api = axios.create({
   },
 })
 
-api.interceptors.response.use(
-  (res) => res,
-  (err: AxiosError<ApiError>) => {
-    if (err.response?.status === 401) {
-      if (err.response.data?.message.code === 'token.expired') {
-        const refreshToken = cookies.get('refreshToken')
-        const originalConfig = err.config
+// api.interceptors.response.use(
+//   (res) => res,
+//   (err: AxiosError<ApiError>) => {
+//     if (err.response?.status === 401) {
+//       if (err.response.data?.message.code === 'token.expired') {
+//         const refreshToken = cookies.get('refreshToken')
+//         const originalConfig = err.config
 
-        if (!isRefreshing) {
-          isRefreshing = true
+//         console.log(refreshToken)
 
-          api
-            .post('/session/refresh-token', {
-              refreshToken,
-            })
-            .then((res) => {
-              const { newToken, newRefreshToken } = res.data
+//         if (!isRefreshing) {
+//           isRefreshing = true
 
-              const cookieExpiresTime = 60 * 60 * 24 * 30 // 30 days
+//           api
+//             .post('/session/refresh-token', {
+//               refreshToken,
+//             })
+//             .then((res) => {
+//               const data = res?.data
 
-              cookies.set('token', newToken, {
-                httpOnly: false,
-                path: '/',
-                maxAge: cookieExpiresTime,
-              })
+//               console.log(data)
 
-              cookies.set('refreshToken', newRefreshToken, {
-                httpOnly: false,
-                path: '/',
-                maxAge: cookieExpiresTime,
-              })
+//               const cookieExpiresTime = 60 * 60 * 24 * 30 // 30 days
 
-              api.defaults.headers.common.Authorization = `Bearer ${newToken}`
+//               cookies.set('token', data?.newToken, {
+//                 httpOnly: false,
+//                 path: '/',
+//                 maxAge: cookieExpiresTime,
+//               })
 
-              failedRequestsQueue.forEach((request) =>
-                request.onSuccess(newToken),
-              )
-              failedRequestsQueue = []
-            })
-            .catch((err) => {
-              failedRequestsQueue.forEach((request) => request.onFailure(err))
-              failedRequestsQueue = []
+//               cookies.set('refreshToken', data?.newRefreshToken, {
+//                 httpOnly: false,
+//                 path: '/',
+//                 maxAge: cookieExpiresTime,
+//               })
 
-              api.get('/api/auth/loggout')
-            })
-            .finally(() => {
-              isRefreshing = false
-            })
-        }
+//               api.defaults.headers.common.Authorization = `Bearer ${data?.newToken}`
 
-        return new Promise((resolve, reject) => {
-          failedRequestsQueue.push({
-            onSuccess: (token: string) => {
-              if (!originalConfig?.headers) {
-                return
-              }
+//               failedRequestsQueue.forEach((request) =>
+//                 request.onSuccess(data?.newToken),
+//               )
+//               failedRequestsQueue = []
+//             })
+//             .catch((err) => {
+//               failedRequestsQueue.forEach((request) => request.onFailure(err))
+//               failedRequestsQueue = []
 
-              originalConfig.headers.Authorization = `Bearer ${token}`
+//               api.get('/api/auth/loggout')
+//             })
+//             .finally(() => {
+//               isRefreshing = false
+//             })
+//         }
 
-              resolve(api(originalConfig))
-            },
-            onFailure: (error: AxiosError) => {
-              reject(error)
-            },
-          })
-        })
-      }
-    }
-  },
-)
+//         return new Promise((resolve, reject) => {
+//           failedRequestsQueue.push({
+//             onSuccess: (token: string) => {
+//               if (!originalConfig?.headers) {
+//                 return
+//               }
+
+//               originalConfig.headers.Authorization = `Bearer ${token}`
+
+//               resolve(api(originalConfig))
+//             },
+//             onFailure: (error: AxiosError) => {
+//               reject(error)
+//             },
+//           })
+//         })
+//       }
+//     }
+//   },
+// )

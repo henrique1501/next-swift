@@ -11,9 +11,10 @@ import { EditorHeader } from './Header'
 
 interface EditorProps {
   content?: string
+  onChange: (content: string | undefined) => void
 }
 
-export function Editor({ content }: EditorProps) {
+export function Editor({ content, onChange }: EditorProps) {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -54,6 +55,9 @@ export function Editor({ content }: EditorProps) {
       },
     },
     content,
+    onUpdate() {
+      onChange(editor?.getHTML())
+    },
   })
 
   function handleToggleBold() {
