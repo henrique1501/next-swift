@@ -35,14 +35,16 @@ export function SignInForm() {
     try {
       setIsLoading(true)
 
-      await axios.post('/api/auth/login', {
+      const res = await axios.post('/api/auth/login', {
         email,
         password,
       })
 
-      setIsLoading(false)
+      if (res.data.message === 'success') {
+        setIsLoading(false)
 
-      router.push('/dashboard')
+        router.push('/dashboard')
+      }
     } catch (error) {
       console.log(error)
     } finally {

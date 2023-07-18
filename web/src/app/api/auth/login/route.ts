@@ -19,20 +19,28 @@ export async function POST(req: Request) {
     password,
   })
 
-  const { token } = res.data
+  const { token, refreshToken } = res.data
 
   const cookieExpiresTime = 60 * 60 * 24 * 30 // 30 days
 
-  const header = Cookie.serialize('@ns:token', token, {
-    httpOnly: false,
+  const tokenHeader = Cookie.serialize('token', token, {
+    httpOnly: true,
     path: '/',
     maxAge: cookieExpiresTime,
   })
 
-  return new Response(null, {
-    headers: {
-      'Set-Cookie': header,
-    },
+  const refreshTokenHeader = Cookie.serialize('refreshToken', refreshToken, {
+    httpOnly: true,
+    path: '/',
+    maxAge: cookieExpiresTime,
+  })
+
+  const headers = new Headers()
+  headers.append('Set-Cookie', tokenHeader)
+  headers.append('Set-Cookie', refreshTokenHeader)
+
+  return new Response(JSON.stringify({ message: 'success' }), {
+    headers,
     status: 200,
   })
 }
