@@ -16,10 +16,10 @@ export function Tooltip({ content, side = 'right', children }: TooltipProps) {
 
         <PrimitiveTooltip.Portal>
           <PrimitiveTooltip.Content
-            className={`z-40 ${side === 'left' && 'mr-2'} ${
-              side === 'top' && 'mb-2'
-            } ${side === 'right' && 'ml-2'} ${
-              side === 'bottom' && 'mt-2'
+            className={`z-40 ${side === 'left' && 'mr-[10px]'} ${
+              side === 'top' && 'mb-[10px]'
+            } ${side === 'right' && 'ml-[10px]'} ${
+              side === 'bottom' && 'mt-[10px]'
             } rounded-md bg-purple-700 p-2 text-xs font-medium text-white`}
             side={side}
             asChild
