@@ -3,6 +3,7 @@
 import {
   LayoutGrid,
   PackageSearch,
+  PowerOff,
   ShoppingBag,
   Tag,
   Truck,
@@ -12,7 +13,7 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LoggoutButton } from './LoggoutButton'
+import { LoggoutButton } from '../LoggoutButton'
 import { NavLink } from './NavLink'
 import { Popover } from './Popover'
 import { Tooltip } from '../Tooltip'
@@ -45,7 +46,7 @@ export function Sidebar() {
 
       <nav className="mt-20">
         <ul className="flex flex-col gap-4">
-          <Tooltip content="dashboard">
+          <Tooltip content="painel">
             <div>
               <NavLink path="/dashboard" isActive={isActive('dashboard')}>
                 <LayoutGrid
@@ -161,7 +162,11 @@ export function Sidebar() {
         </ul>
       </nav>
 
-      <LoggoutButton />
+      <LoggoutButton>
+        <button className="mt-auto">
+          <PowerOff className="h-6 w-6 stroke-white/60 hover:stroke-purple-700" />
+        </button>
+      </LoggoutButton>
     </aside>
   )
 }

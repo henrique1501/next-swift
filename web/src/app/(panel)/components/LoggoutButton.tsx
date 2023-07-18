@@ -1,15 +1,16 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { PowerOff } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { ReactNode } from 'react'
 
-export function LoggoutButton() {
+interface LoggoutButtonProps {
+  children: ReactNode
+}
+
+export function LoggoutButton({ children }: LoggoutButtonProps) {
   return (
     <Dialog.Root>
-      <Dialog.Trigger asChild>
-        <button className="mt-auto">
-          <PowerOff className="h-6 w-6 stroke-white/60 hover:stroke-purple-700" />
-        </button>
-      </Dialog.Trigger>
+      <Dialog.Trigger asChild>{children}</Dialog.Trigger>
 
       <Dialog.Portal>
         <Dialog.Overlay className="modal-overlay fixed inset-0 z-40" />

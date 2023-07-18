@@ -26,6 +26,7 @@ import {
   suppliersLinks,
 } from '../Sidebar/data'
 import { useEffect, useState } from 'react'
+import { LoggoutButton } from '../LoggoutButton'
 
 export function MobileSidebar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -86,7 +87,7 @@ export function MobileSidebar() {
                         : 'text-gray-300'
                     }`}
                   >
-                    Dashboard
+                    Painel
                   </span>
                 </Link>
               </li>
@@ -216,11 +217,13 @@ export function MobileSidebar() {
             </ul>
           </nav>
 
-          <Link href="#" className="mx-6 mt-10 flex items-center gap-2 pl-2">
-            <PowerOff className="h-6 w-6 stroke-gray-400" />
+          <LoggoutButton>
+            <button className="mx-6 mt-10 flex items-center gap-2 pl-2">
+              <PowerOff className="h-6 w-6 stroke-gray-400" />
 
-            <span className="block text-gray-400">Sair</span>
-          </Link>
+              <span className="block text-gray-400">Sair</span>
+            </button>
+          </LoggoutButton>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
