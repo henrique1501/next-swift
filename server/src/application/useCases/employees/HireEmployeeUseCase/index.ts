@@ -1,4 +1,4 @@
-import { Employee, Gender } from '@app/entities/Employee'
+import { Employee } from '@app/entities/Employee'
 import { Email } from '@app/entities/Employee/Email'
 import { Password } from '@app/entities/Employee/Password'
 import { AppError } from '@app/errors/AppError'
@@ -13,7 +13,6 @@ interface Request {
   email: string
   phone: number
   avatar: string | null
-  gender: Gender
   roleId: string
 }
 
@@ -26,7 +25,7 @@ export class HireEmployeeUseCase {
   ) {}
 
   async execute(data: Request): Promise<Response> {
-    const { name, email, phone, avatar, gender, roleId } = data
+    const { name, email, phone, avatar, roleId } = data
 
     const employeeAlreadyExists = await this.employeesRepo.findByEmail(email)
 
@@ -44,7 +43,6 @@ export class HireEmployeeUseCase {
       password: new Password(hashedPassword),
       phone,
       avatar,
-      gender,
       roles: null,
     })
 

@@ -3,15 +3,12 @@ import { randomUUID } from 'node:crypto'
 import { Email } from './Email'
 import { Password } from './Password'
 
-export type Gender = 'M' | 'F'
-
 interface EmployeeProps {
   name: string
   email: Email
   password: Password
   phone: number
   avatar: string | null
-  gender: Gender
   roles: string[] | null
   createdAt: Date
   updatedAt?: Date | null
@@ -75,14 +72,6 @@ export class Employee {
 
   public set avatar(avatar: string | null) {
     this.props.avatar = avatar
-  }
-
-  public get gender(): Gender {
-    return this.props.gender
-  }
-
-  public set gender(gender: Gender) {
-    this.props.gender = gender
   }
 
   public get roles(): string[] | null {

@@ -1,5 +1,6 @@
 import { RemoveProductImagesUseCase } from '@app/useCases/products/RemoveProductImagesUseCase'
 import { PrismaProductImagesRepository } from '@infra/database/prisma/repositories/PrismaProductImagesRepository'
+import { PrismaProductsRepository } from '@infra/database/prisma/repositories/PrismaProductsRepository'
 import { Request, Response } from 'express'
 import { z } from 'zod'
 
@@ -16,8 +17,10 @@ export class RemoveProductImagesController {
     const { productId } = paramsSchema.parse(req.params)
     const { imagesIds } = bodySchema.parse(req.body)
 
+    const productsRepo = new PrismaProductsRepository()
     const productImagesRepo = new PrismaProductImagesRepository()
     const removeProductImagesUseCase = new RemoveProductImagesUseCase(
+      productsRepo,
       productImagesRepo,
     )
 

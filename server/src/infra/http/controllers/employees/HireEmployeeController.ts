@@ -9,13 +9,12 @@ const bodySchema = z.object({
   name: z.string(),
   email: z.string().email(),
   phone: z.coerce.number(),
-  gender: z.enum(['M', 'F']),
   role: z.string(),
 })
 
 export class HireEmployeeController {
   async handle(req: Request, res: Response): Promise<Response> {
-    const { name, email, phone, gender, role } = bodySchema.parse(req.body)
+    const { name, email, phone, role } = bodySchema.parse(req.body)
     const avatar = req.file?.filename
 
     const employeesRepository = new PrismaEmployeesRepository()
@@ -31,7 +30,6 @@ export class HireEmployeeController {
       email,
       phone: Number(phone),
       avatar: avatar ?? null,
-      gender,
       roleId: role,
     })
 

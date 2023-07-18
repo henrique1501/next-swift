@@ -7,11 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Gender {
-  M
-  F
-}
-
 model Employee {
   id String @id
 
@@ -20,7 +15,6 @@ model Employee {
   password    String
   phone       Int
   avatar      String?
-  gender      Gender
   dismissedAt DateTime?
 
   roles    Role[]
