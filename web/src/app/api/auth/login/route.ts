@@ -24,13 +24,13 @@ export async function POST(req: Request) {
   const cookieExpiresTime = 60 * 60 * 24 * 30 // 30 days
 
   const tokenHeader = Cookie.serialize('token', token, {
-    httpOnly: true,
+    httpOnly: false,
     path: '/',
     maxAge: cookieExpiresTime,
   })
 
   const refreshTokenHeader = Cookie.serialize('refreshToken', refreshToken, {
-    httpOnly: true,
+    httpOnly: false,
     path: '/',
     maxAge: cookieExpiresTime,
   })

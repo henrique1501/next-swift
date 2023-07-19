@@ -17,6 +17,7 @@ const addProductFormValidationSchema = zod.object({
   name: zod.string(),
   width: zod.string(),
   height: zod.string(),
+  weight: zod.string(),
   price: zod.string(),
   quantity: zod.string(),
 })
@@ -39,6 +40,7 @@ export function ProductForm() {
     name,
     width,
     height,
+    weight,
     price,
     quantity,
   }: AddProductFormData) {
@@ -48,6 +50,7 @@ export function ProductForm() {
     formData.append('description', description ?? '')
     formData.append('width', width)
     formData.append('height', height)
+    formData.append('weight', weight)
     formData.append('price', price)
     formData.append('quantity', quantity)
 
@@ -63,9 +66,10 @@ export function ProductForm() {
           description: formData.get('description'),
           width: formData.get('width'),
           height: formData.get('height'),
+          weight: formData.get('weight'),
           price: formData.get('price'),
           quantity: formData.get('quantity'),
-          images: formData.get('image'),
+          image: formData.get('image'),
         },
         {
           headers: {
@@ -79,7 +83,7 @@ export function ProductForm() {
       setImages([])
       setTags([])
     } catch (error: any) {
-      console.log(error.message)
+      console.log(error)
     } finally {
       setIsLoading(false)
     }
@@ -120,7 +124,12 @@ export function ProductForm() {
           {...register('height')}
         />
 
-        <Input type="number" label="Peso (g)" placeholder="55" name="weight" />
+        <Input
+          type="number"
+          label="Peso (g)"
+          placeholder="55"
+          {...register('weight')}
+        />
 
         <Input
           type="number"
